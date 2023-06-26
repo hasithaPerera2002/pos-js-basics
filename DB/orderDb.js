@@ -14,7 +14,7 @@ export function saveOrder(order_detail) {
 export function getNewOrderID() {
     let pre_order = localStorage.getItem(order);
     let order_arr = JSON.parse(pre_order) || [];
-    if (order_arr.length > -1) {
+    if (order_arr.length > 0) {
         let lastOrder = order_arr[order_arr.length - 1];
         let lastOrderId = lastOrder._order_detail_list[0]._order_id;
         console.log(lastOrder)

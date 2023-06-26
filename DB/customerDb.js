@@ -38,4 +38,17 @@ export function deleteCustomer(delete_customer) {
     }
 
 }
+export function getNewCustomerID() {
+    let pre_order = localStorage.getItem(data);
+    let cus_arr = JSON.parse(pre_order) || [];
+    if (cus_arr.length > 0) {
+        let lastId = cus_arr[cus_arr.length - 1];
+        let lastCusId = lastId._c_id;
+        console.log(lastCusId)
+        let cusIdNumber = parseInt(lastCusId.slice(1));
+        let newOrderIdNumber = cusIdNumber + 1;
+        return 'c' + newOrderIdNumber.toString().padStart(3, '0');
+    }
+    return 'c001';
+}
 new Customer()

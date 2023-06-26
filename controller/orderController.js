@@ -18,15 +18,15 @@ export class OrderController {
         $('#customerID').click(this.loadCustomerName.bind(this))
         $('#itemID').click(this.loadItemName.bind(this));
         $('#quantity').on('input', this.calculateTotal.bind(this));
-
+        $('#orderDate').val(new Date().toLocaleDateString())
 
         this.loadCustomer()
         this.loadItems()
         this.loopData()
 
-        $('#orderID').val(getNewOrderID())
+        $('#orderId').val(getNewOrderID())
 
-        $('#orderID').prop("disabled", true)
+        $('#orderId').prop("disabled", true)
         $('#price').prop("disabled", true)
         $('#itemName').prop("disabled", true)
         $('#custName').prop("disabled", true)
@@ -63,6 +63,7 @@ export class OrderController {
         let selectedItem = JSON.parse(selectedOption);
         $('#itemName').val(selectedItem._i_name);
         $('#price').val(selectedItem._price);
+        $('#qtyOnHand').val(selectedItem._qty);
     }
 
     newId() {
@@ -82,18 +83,27 @@ export class OrderController {
         let selectedOption = $('#customerID').val();
         let selectedCustomer = JSON.parse(selectedOption);
         $('#custName').val(selectedCustomer._fname);
+        $('#customerAddress').val(selectedCustomer._address);
+
     }
+
 
     handleSaveOrder(e) {
         e.preventDefault()
-        let orderId = $('#orderID').val();
+        let orderId = $('#orderId').val();
         let customerId = JSON.parse($('#customerID').val())._c_id;
         let itemId = JSON.parse($('#itemID').val())._i_id;
         let qty = parseInt($('#quantity').val());
         let total = parseInt($('#total').val());
         let price = $('#price').val();
 
-        if (!orderId || !customerId || !itemId || !qty || !total || !price) {
+        if ( !orderId || !customerId || !itemId || !qty || !total || !price) {
+
+            console.log(customerId)
+            console.log(itemId)
+            console.log(qty)
+            console.log(total)
+            console.log(price)
             alert(('Please fill in all fields'));
 
             return;
@@ -150,14 +160,15 @@ export class OrderController {
 
     handleTblOrder(e) {
         //kadila
-        $('#orderID').val($(e.target).closest('tr').find('td').eq(0).text());
-        $('#customerID').val($(e.target).closest('tr').find('td').eq(1).text());
-        $('#custName').val($(e.target).closest('tr').find('td').eq(2).text());
-        $('#itemName').val($(e.target).closest('tr').find('td').eq(4).text());
-        $('#itemID').val($(e.target).closest('tr').find('td').eq(3).val());
-        $('#quantity').val($(e.target).closest('tr').find('td').eq(5).text());
-        $('#price').val($(e.target).closest('tr').find('td').eq(6).text());
-        $('#total').val($(e.target).closest('tr').find('td').eq(7).text());
+        $('#orderId').text($(e.target).closest('tr').find('td').eq(0).text());
+        $('#customerID').text($(e.target).closest('tr').find('td').eq(1).text());
+        $('#custName').text($(e.target).closest('tr').find('td').eq(2).text());
+        $('#itemName').text($(e.target).closest('tr').find('td').eq(4).text());
+        $('#price').text($(e.target).closest('tr').find('td').eq(3).val());
+        $('#quantity').text($(e.target).closest('tr').find('td').eq(5).text());
+        $('#itemID').val($(e.target).closest('tr').find('td').eq(6).text());
+        $('#total').text($(e.target).closest('tr').find('td').eq(7).text());
+
 
         $('#addBtn').prop('disabled', true)
     }
@@ -165,7 +176,7 @@ export class OrderController {
     placeOrder() {
         let order = saveOrder(new Order(this.orderList,$('#orderTotal').val()));
         (order) ? alert("order added successfully") : alert("error when saving order")
-
+        this.clearOrder()
     }
 
     calculateTotal() {

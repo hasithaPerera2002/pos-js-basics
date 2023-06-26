@@ -9,34 +9,55 @@
     <title>Item Form</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-<div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="customer.html">Customer</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="item.html">Item</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="order.html">Order</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="orderDetails.html">Order Details </a>
-            </li>
+<nav class="navbar navbar-expand-lg navbar-light shadow-lg posNavi position-relative rounded-bottom">
+    <div class="container-fluid">
+        <a class="navbar-brand text-dark fw-bold " href="#">
+            <img alt="Logo" class="d-inline-block align-text-center" height="44" src="assets/images/logo.png"
+                 width="50">
+            <span class="text-success"> WEB </span> POS
+        </a>
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler" data-bs-target="#navbarSupportedContent"
+                data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item" id="homeBtn">
+                    <a aria-current="page" class="nav-link active" href="home.html">Home</a>
+                </li>
+                <li class="nav-item" id="customerBtn">
+                    <a class="nav-link" href="customer.html">Customer </a>
+                </li>
+                <li class="nav-item" id="itemBtn">
+                    <a class="nav-link" href="item.html">Items</a>
+                </li>
+                <li class="nav-item" id="orderBtn">
+                    <a class="nav-link" href="order.html">Orders</a>
+                </li>
+                <li class="nav-item" id="orderDetailsBtn">
+                    <a class="nav-link" href="orderDetails.html">Order Details</a>
+                </li>
 
-        </ul>
+            </ul>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-outline-primary btn-m" type="button"><i class="fa-solid fa-user-plus"></i>
+                    Sign Up
+                </button>
+                <button class="btn btn-outline-secondary" type="button"><i
+                        class="fa-solid fa-right-from-bracket"></i> Log Out
+                </button>
+            </div>
+        </div>
     </div>
-</div>
 </nav>
 <div id="page-content-wrapper">
     <div class="container-fluid px-4">
         <div class="row g-3 my-2">
+            <div class="position-relative d-inline-block mt-3 mt-lg-4 mt-md-4">
+                <h6 id="H6">Home > Item</h6>
+                <hr>
+            </div>
             <form class="row g-3">
                 <div class="col-md-4">
                     <label for="itemID" class="form-label">Item ID</label>
@@ -84,12 +105,12 @@
                     <small id="priceError" class="text-danger"></small>
                 </div>
                 <div class="col-12">
-                    <button type="button" class="btn btn-primary" id="addBtn">
+                    <button type="button" class="btn btn-success  ms-3 mb-3 ms-md-3 ms-lg-3" id="addBtn">
                         Add
                     </button>
-                    <button type="submit" class="btn btn-success" id="updateBtn">Update</button>
-                    <button type="submit" class="btn btn-danger" id="deleteBtn">Delete</button>
-                    <button type="submit" class="btn btn-outline-dark" id="clearBtn">Clear</button>
+                    <button type="submit" class="btn btn-warning  ms-3 mb-3 ms-md-3 ms-lg-3" id="updateBtn">Update</button>
+                    <button type="submit" class="btn btn-danger  ms-3 mb-3 ms-md-3 ms-lg-3" id="deleteBtn">Delete</button>
+                    <button type="submit" class="btn btn-primary  ms-3 mb-3 ms-md-3 ms-lg-3" id="clearBtn">Clear</button>
                 </div>
             </form>
         </div>
@@ -98,7 +119,7 @@
         <h3 class="fs-4 mb-3">All Items</h3>
         <div class="col">
             <table class="table bg-white rounded shadow-sm table-hover">
-                <thead>
+                <thead class="text-light table-dark text-center  table-bordered sticky-top">
                 <tr>
                     <th scope="col">Item ID</th>
                     <th scope="col">Item Name</th>
@@ -116,7 +137,7 @@
     </div>
 </div>
 
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
 <script src="jquery-3.6.3.js"></script>
 <script type="module" src="controller/itemController.js"></script>

@@ -11,37 +11,58 @@
     <title>Order Details Form</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg navbar-light shadow-lg posNavi position-relative rounded-bottom">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand text-dark fw-bold " href="#">
+            <img alt="Logo" class="d-inline-block align-text-center" height="44" src="assets/images/logo.png"
+                 width="50">
+            <span class="text-success"> WEB </span> POS
+        </a>
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler" data-bs-target="#navbarSupportedContent"
+                data-bs-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Customer</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item" id="homeBtn">
+                    <a aria-current="page" class="nav-link active" href="home.html">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="item.html">Item</a>
+                <li class="nav-item" id="customerBtn">
+                    <a class="nav-link" href="customer.html">Customer </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="order.html">Order</a>
+                <li class="nav-item" id="itemBtn">
+                    <a class="nav-link" href="item.html">Items</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="orderDetails.html">OrderDetails</a>
+                <li class="nav-item" id="orderBtn">
+                    <a class="nav-link" href="order.html">Orders</a>
+                </li>
+                <li class="nav-item" id="orderDetailsBtn">
+                    <a class="nav-link" href="orderDetails.html">Order Details</a>
                 </li>
 
             </ul>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-outline-primary btn-m" type="button"><i class="fa-solid fa-user-plus"></i>
+                    Sign Up
+                </button>
+                <button class="btn btn-outline-secondary" type="button"><i
+                        class="fa-solid fa-right-from-bracket"></i> Log Out
+                </button>
+            </div>
         </div>
     </div>
 </nav>
 <div class="row my-5 container-fluid">
+    <div class="position-relative d-inline-block mt-3 mt-lg-4 mt-md-4">
+        <h6 id="H6">Home > Order Details</h6>
+        <hr>
+    </div>
     <h3 class="fs-4 mb-3">All Orders</h3>
     <div class="col">
+
         <table class="table bg-white rounded shadow-sm table-hover">
-            <thead>
+            <thead class="text-light table-dark text-center  table-bordered sticky-top">
             <tr>
                 <th scope="col">Order ID</th>
                 <th scope="col">Customer ID</th>
@@ -58,7 +79,7 @@
     <h3 class="fs-4 mb-3">Selected Order</h3>
     <div class="col">
         <table class="table bg-white rounded shadow-sm">
-            <thead>
+            <thead class="text-light table-dark text-center  table-bordered sticky-top">
             <tr>
                 <th scope="col">Item ID</th>
                 <th scope="col">Quantity</th>

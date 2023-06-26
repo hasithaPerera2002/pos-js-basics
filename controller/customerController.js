@@ -1,5 +1,5 @@
 import { Customer } from "../modules/customer.js";
-import { deleteCustomer, getCustomers, saveCustomer, updateCustomer } from "../DB/customerDb.js";
+import {deleteCustomer, getCustomers, getNewCustomerID, saveCustomer, updateCustomer} from "../DB/customerDb.js";
 
 export class CustomerController {
     constructor() {
@@ -8,7 +8,9 @@ export class CustomerController {
         $('#addBtn').click(this.handleSaveCustomer.bind(this));
         $('#table_body').click(this.handleTblCustomer.bind(this));
         $('#clearBtn').click(this.clearCustomer.bind(this));
-
+        console.log('c')
+        $('#custID').val(getNewCustomerID())
+        $('#custID').prop("disabled", true)
         this.custIdPattern = /c\d/;
         this.namePattern = /^[a-zA-Z]+$/;
         this.addressPattern = /^[a-zA-Z0-9\s\.,#-]+$/;
@@ -90,15 +92,18 @@ export class CustomerController {
             return;
         }
         $('#addressError').text('');
-        saveCustomer(new Customer(custID, fName, lName, address)) ? alert("Item saved Successfully"):alert("Error when saving");
+        saveCustomer(new Customer(custID, fName, lName, address)) ?  toastr.success('successfully saved'):toastr.error("Error when saving");
+
         this.loop_data();
         this.clearCustomer()
+        $('#custID').val(getNewCustomerID())
+        $('#custID').prop("disabled", true)
     }
 
     handleUpdateCustomer(e) {
         e.preventDefault();
         console.log('update button clicked');
-
+        $('#custID').prop("disabled", true)
         const custID = $('#custID').val();
         const fName = $('#fName').val();
         const lName = $('#lName').val();
